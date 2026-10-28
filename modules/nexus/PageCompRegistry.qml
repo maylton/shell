@@ -42,6 +42,14 @@ QtObject {
 
         // Connectivity
         Component {
+            // Display
+            StackPage {
+                Component {
+                    DisplayPage {}
+                }
+            }
+        },
+        Component {
             // Network
             StackPage {
                 Component {
@@ -95,10 +103,20 @@ QtObject {
 
         // System
         Component {
-            PlaceholderComp {}
+            // Updates
+            StackPage {
+                Component {
+                    UpdatesPage {}
+                }
+            }
         },
         Component {
-            PlaceholderComp {}
+            // Plugins
+            StackPage {
+                Component {
+                    PluginsPage {}
+                }
+            }
         },
 
         // Shell

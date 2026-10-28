@@ -3853,3 +3853,301 @@ msgstr "Configurações"
 #: plugin/src/Caelestia/Config/launcherconfig.hpp
 msgid "Configure the shell"
 msgstr "Configurar o shell"
+# Local additions: Display, Updates and Plugins pages
+
+msgctxt "display rotation"
+msgid "Normal"
+msgstr "Normal"
+
+msgctxt "display rotation"
+msgid "Flipped"
+msgstr "Espelhado"
+
+msgctxt "display rotation"
+msgid "Flipped 90°"
+msgstr "Espelhado 90°"
+
+msgctxt "display rotation"
+msgid "Flipped 180°"
+msgstr "Espelhado 180°"
+
+msgctxt "display rotation"
+msgid "Flipped 270°"
+msgstr "Espelhado 270°"
+
+msgctxt "variable refresh rate"
+msgid "Off"
+msgstr "Desligado"
+
+msgctxt "variable refresh rate"
+msgid "On"
+msgstr "Ligado"
+
+msgctxt "variable refresh rate"
+msgid "Fullscreen only"
+msgstr "Só em tela cheia"
+
+msgid "Unable to read monitors"
+msgstr "Não foi possível ler os monitores"
+
+msgid "Requires a Lua Hyprland config"
+msgstr "Requer uma configuração do Hyprland em Lua"
+
+msgid "This page applies and saves monitor rules through hl.monitor()"
+msgstr "Esta página aplica e salva regras de monitor via hl.monitor()"
+
+#, qt-format
+msgid "Keep these display settings? Reverting in %1 s"
+msgstr "Manter estas configurações de tela? Revertendo em %1 s"
+
+msgctxt "button"
+msgid "Revert"
+msgstr "Reverter"
+
+msgctxt "button"
+msgid "Keep"
+msgstr "Manter"
+
+msgid "Hyprland rejected the change"
+msgstr "O Hyprland recusou a alteração"
+
+msgid "Monitor"
+msgstr "Monitor"
+
+msgid "Display to configure"
+msgstr "Tela a configurar"
+
+msgid "No monitors found"
+msgstr "Nenhum monitor encontrado"
+
+msgid "Disabled"
+msgstr "Desativado"
+
+msgid "Enabled"
+msgstr "Ativado"
+
+msgid "The only active display can't be turned off"
+msgstr "A única tela ativa não pode ser desligada"
+
+msgid "Turn this display on or off"
+msgstr "Liga ou desliga esta tela"
+
+msgid "Resolution"
+msgstr "Resolução"
+
+msgid "Refresh rate"
+msgstr "Taxa de atualização"
+
+msgid "Scale"
+msgstr "Escala"
+
+msgid "Hyprland picks the closest valid value"
+msgstr "O Hyprland usa o valor válido mais próximo"
+
+msgid "Rotation"
+msgstr "Rotação"
+
+msgid "Variable refresh rate"
+msgstr "Taxa de atualização variável"
+
+msgid "Adaptive sync (FreeSync / G-Sync)"
+msgstr "Sincronização adaptativa (FreeSync / G-Sync)"
+
+msgid "Position X"
+msgstr "Posição X"
+
+msgid "Horizontal offset in the layout (px)"
+msgstr "Deslocamento horizontal no layout (px)"
+
+msgid "Position Y"
+msgstr "Posição Y"
+
+msgid "Vertical offset in the layout (px)"
+msgstr "Deslocamento vertical no layout (px)"
+
+msgid "Saved settings won't load on login"
+msgstr "As configurações salvas não serão carregadas no login"
+
+msgid "Add pcall(require, \"hypr-monitors\") to hypr-user.lua"
+msgstr "Adicione pcall(require, \"hypr-monitors\") ao hypr-user.lua"
+
+msgctxt "button"
+msgid "Reset"
+msgstr "Redefinir"
+
+msgctxt "button"
+msgid "Apply"
+msgstr "Aplicar"
+
+msgid "Checking for updates…"
+msgstr "Procurando atualizações…"
+
+#, qt-plural-format
+msgid "%n update available"
+msgid_plural "%n updates available"
+msgstr[0] "%n atualização disponível"
+msgstr[1] "%n atualizações disponíveis"
+
+msgid "Unable to check for updates"
+msgstr "Não foi possível verificar atualizações"
+
+msgid "System is up to date"
+msgstr "O sistema está atualizado"
+
+#, qt-format
+msgid "Last checked at %1"
+msgstr "Última verificação às %1"
+
+msgctxt "button"
+msgid "Check now"
+msgstr "Verificar agora"
+
+msgctxt "button"
+msgid "Update all"
+msgstr "Atualizar tudo"
+
+msgid "Official repositories"
+msgstr "Repositórios oficiais"
+
+msgid "Update Caelestia dotfiles"
+msgstr "Atualizar dotfiles do Caelestia"
+
+msgid "Runs caelestia update in a terminal (also upgrades the system)"
+msgstr "Executa caelestia update num terminal (também atualiza o sistema)"
+
+msgid "Checking…"
+msgstr "Verificando…"
+
+msgid "No pending updates"
+msgstr "Nenhuma atualização pendente"
+
+msgid "Official plugin support is coming"
+msgstr "Suporte oficial a plugins está a caminho"
+
+msgid "Caelestia doesn't have an official plugin system yet. Local extensions installed on this system are managed below."
+msgstr "O Caelestia ainda não tem um sistema oficial de plugins. As extensões locais instaladas neste sistema são gerenciadas abaixo."
+
+msgctxt "button"
+msgid "Follow progress on GitHub"
+msgstr "Acompanhar no GitHub"
+
+msgid "Shell plugins"
+msgstr "Plugins do shell"
+
+msgctxt "plugin state"
+msgid "Running"
+msgstr "Em execução"
+
+msgctxt "plugin state"
+msgid "Stopped"
+msgstr "Parado"
+
+#, qt-format
+msgid "Open %1"
+msgstr "Abrir %1"
+
+msgid "Hyprland plugins"
+msgstr "Plugins do Hyprland"
+
+msgid "No Hyprland plugins loaded"
+msgstr "Nenhum plugin do Hyprland carregado"
+
+msgid "Caelestia components"
+msgstr "Componentes do Caelestia"
+
+msgid "Running shell"
+msgstr "Shell em execução"
+
+#, qt-format
+msgid "Local build: %1"
+msgstr "Build local: %1"
+
+msgid "Phone integration (KDE Connect compatible)"
+msgstr "Integração com o celular (compatível com KDE Connect)"
+
+msgid "Resolution, refresh rate, scale"
+msgstr "Resolução, taxa de atualização, escala"
+
+msgid "No shell plugins installed"
+msgstr "Nenhum plugin do shell instalado"
+
+msgctxt "monitor placement"
+msgid "Right of primary"
+msgstr "À direita do principal"
+
+msgctxt "monitor placement"
+msgid "Left of primary"
+msgstr "À esquerda do principal"
+
+msgctxt "monitor placement"
+msgid "Above primary"
+msgstr "Acima do principal"
+
+msgctxt "monitor placement"
+msgid "Below primary"
+msgstr "Abaixo do principal"
+
+msgctxt "monitor placement"
+msgid "Custom"
+msgstr "Personalizada"
+
+msgctxt "multi-monitor mode"
+msgid "Extend"
+msgstr "Estender"
+
+msgctxt "multi-monitor mode"
+msgid "Mirror primary"
+msgstr "Espelhar o principal"
+
+msgid "The monitor didn't switch to HDR"
+msgstr "O monitor não ativou o HDR"
+
+msgid "It may not support HDR, or HDR is off in the monitor's own menu"
+msgstr "Ele pode não suportar HDR, ou o HDR está desligado no menu do próprio monitor"
+
+#, qt-format
+msgid "%1 · Primary monitor"
+msgstr "%1 · Monitor principal"
+
+msgid "Picture"
+msgstr "Imagem"
+
+msgid "Needs an HDR capable monitor, uses 10-bit colour"
+msgstr "Requer um monitor compatível com HDR, usa cor de 10 bits"
+
+msgid "SDR brightness"
+msgstr "Brilho SDR"
+
+msgid "Brightness of non-HDR content while HDR is on"
+msgstr "Brilho do conteúdo não-HDR com o HDR ligado"
+
+msgid "SDR saturation"
+msgstr "Saturação SDR"
+
+msgid "Colour saturation of non-HDR content while HDR is on"
+msgstr "Saturação do conteúdo não-HDR com o HDR ligado"
+
+msgid "Multiple monitors"
+msgstr "Múltiplos monitores"
+
+msgid "Primary monitor"
+msgstr "Monitor principal"
+
+msgid "Applied right away: cursor, workspace 1 and games (XWayland)"
+msgstr "Aplicado na hora: cursor, workspace 1 e jogos (XWayland)"
+
+msgid "Mode"
+msgstr "Modo"
+
+#, qt-format
+msgid "Showing the same picture as %1"
+msgstr "Mostrando a mesma imagem que %1"
+
+msgid "Separate desktop next to the primary monitor"
+msgstr "Área de trabalho separada ao lado do principal"
+
+msgid "Placement"
+msgstr "Posicionamento"
+
+msgid "Where this monitor sits relative to the primary one"
+msgstr "Onde este monitor fica em relação ao principal"

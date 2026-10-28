@@ -6,6 +6,9 @@ import Quickshell
 import Quickshell.Bluetooth
 import Caelestia.Config
 import qs.components
+// caelestia-connect: begin
+import qs.services
+// caelestia-connect: end
 import qs.utils
 
 Item {
@@ -43,7 +46,7 @@ Item {
         // Connected bluetooth devices
         Repeater {
             model: ScriptModel {
-                values: Bluetooth.devices.values.filter(d => d.state !== BluetoothDeviceState.Disconnected)
+                values: Bluetooth.devices.values.filter(d => d.state !== BluetoothDeviceState.Disconnected && !KdeConnect.isPairedPhone(d.address)) // caelestia-connect
             }
 
             MaterialIcon {

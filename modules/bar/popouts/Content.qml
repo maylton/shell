@@ -101,7 +101,14 @@ Item {
                 popouts: root.popouts
             }
         }
-
+        // caelestia-connect: begin
+        Popout {
+            name: "kdeconnect"
+            sourceComponent: KdeConnectPopout {
+                popouts: root.popouts
+            }
+        }
+        // caelestia-connect: end
         Popout {
             name: "battery"
             sourceComponent: Battery {}

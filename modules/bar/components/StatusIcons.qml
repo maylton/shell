@@ -33,8 +33,27 @@ StyledRect {
         return -1;
     }
 
+    // caelestia-connect: begin
+    // Add the KDE Connect icon next to bluetooth unless the config already lists "kdeConnect"
+    function withKdeConnect(values: var): var {
+        const out = Array.from(values);
+        if (out.some(e => e.id === "kdeConnect"))
+            return out;
+        const at = out.findIndex(e => e.id === "battery");
+        out.splice(at < 0 ? out.length : at, 0, {
+            id: "kdeConnect",
+            enabled: true
+        });
+        return out;
+    }
+    // caelestia-connect: end
+
     // Entries that can shrink to nothing, spacing included
     function collapsed(entry: var): bool {
+        // caelestia-connect: begin
+        if (entry.id === "kdeConnect")
+            return !KdeConnect.shown;
+        // caelestia-connect: end
         if (entry.id === "lockStatus")
             return !Hypr.capsLock && !Hypr.numLock;
         return false;
@@ -61,7 +80,7 @@ StyledRect {
             model: ScriptModel {
                 id: model
 
-                values: root.Config.bar.statusIcons.values.filter(e => e.enabled)
+                values: root.withKdeConnect(root.Config.bar.statusIcons.values).filter(e => e.enabled) // caelestia-connect
             }
 
             DelegateChooser {
@@ -134,6 +153,16 @@ StyledRect {
                         }
                     }
                 }
+                // caelestia-connect: begin
+                DelegateChoice {
+                    roleValue: "kdeConnect"
+                    delegate: EntryWrapper {
+                        KdeConnectStatus {
+                            colour: root.colour
+                        }
+                    }
+                }
+                // caelestia-connect: end
                 DelegateChoice {
                     roleValue: "battery"
                     delegate: EntryWrapper {

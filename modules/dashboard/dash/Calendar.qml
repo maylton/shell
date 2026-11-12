@@ -5,6 +5,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import M3Shapes
 import Caelestia.Config
+import Caelestia.I18n
 import qs.components
 import qs.components.controls
 import qs.components.effects
@@ -25,6 +26,38 @@ CustomMouseArea {
     property real animTranslate
     property real animOpacity: 1
 
+    // Day whose events are listed under the grid.
+    property date selectedDate: new Date()
+
+    function sameDay(a: date, b: date): bool {
+        return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
+    }
+
+    function goToday(): void {
+        screenState.dashboardDate = new Date();
+        selectedDate = new Date();
+    }
+
+    function dayTitle(day: date): string {
+        const now = Time.date;
+        if (sameDay(day, now))
+            return Tr.tr("Today");
+        if (sameDay(day, new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1)))
+            return Tr.tr("Tomorrow");
+        // TRANSLATORS: Qt date format for the day shown under the dashboard calendar
+        const title = Qt.locale().toString(day, Tr.trCtx("dddd, d MMMM", "date format"));
+        return title.charAt(0).toUpperCase() + title.slice(1);
+    }
+
+    function timeText(moment: date): string {
+        return Qt.formatTime(moment, Units.twelveHourClock ? "h:mm AP" : "hh:mm");
+    }
+
+    function nextText(event: var): string {
+        const when = Qt.locale().toString(event.start, "ddd, d MMM") + (event.allDay ? "" : ` ${timeText(event.start)}`);
+        return Tr.tr("No events · next: %1").arg(`${when} · ${event.title}`);
+    }
+
     function onWheel(event: WheelEvent): void {
         if (event.angleDelta.y > 0)
             screenState.dashboardDate = new Date(nonAnimCurrYear, nonAnimCurrMonth - 1, 1);
@@ -37,7 +70,7 @@ CustomMouseArea {
     implicitHeight: inner.implicitHeight + inner.anchors.margins * 2
 
     acceptedButtons: Qt.MiddleButton
-    onClicked: root.screenState.dashboardDate = new Date()
+    onClicked: root.goToday()
 
     Anim {
         id: trOutAnim
@@ -120,9 +153,9 @@ CustomMouseArea {
                     radius: pressed ? Tokens.rounding.small : height / 2
                     disabled: {
                         const now = new Date();
-                        return root.nonAnimCurrMonth === now.getMonth() && root.nonAnimCurrYear === now.getFullYear();
+                        return root.nonAnimCurrMonth === now.getMonth() && root.nonAnimCurrYear === now.getFullYear() && root.sameDay(root.selectedDate, now);
                     }
-                    onClicked: root.screenState.dashboardDate = new Date()
+                    onClicked: root.goToday()
 
                     Behavior on radius {
                         Anim {
@@ -196,9 +229,40 @@ CustomMouseArea {
                     id: dayItem
 
                     required property var model
+                    readonly property bool selected: root.sameDay(root.selectedDate, model.date)
+                    readonly property int eventCount: Events.count(model.date)
 
                     implicitWidth: implicitHeight
                     implicitHeight: text.implicitHeight + Tokens.padding.small
+
+                    Rectangle {
+                        anchors.centerIn: parent
+                        implicitWidth: dayItem.implicitHeight + Tokens.padding.extraSmall
+                        implicitHeight: implicitWidth
+                        radius: width / 2
+                        color: "transparent"
+                        border.width: 1
+                        border.color: Colours.palette.m3primary
+                        visible: dayItem.selected && !dayItem.model.today
+                    }
+
+                    Rectangle {
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.bottom: parent.bottom
+                        anchors.bottomMargin: -1
+                        implicitWidth: 4
+                        implicitHeight: 4
+                        radius: 2
+                        color: Colours.palette.m3primary
+                        opacity: dayItem.model.month === grid.month ? 1 : 0.4
+                        visible: dayItem.eventCount > 0
+                    }
+
+                    MouseArea {
+                        anchors.fill: parent
+                        cursorShape: Qt.PointingHandCursor
+                        onClicked: root.selectedDate = dayItem.model.date
+                    }
 
                     StyledText {
                         id: text
@@ -253,6 +317,104 @@ CustomMouseArea {
                     sourceColor: Colours.palette.m3onSurface
                     colorizationColor: Colours.palette.m3onPrimary
                 }
+            }
+        }
+
+        ColumnLayout {
+            id: agenda
+
+            readonly property var dayEvents: Events.eventsOn(root.selectedDate)
+            readonly property var next: dayEvents.length === 0 ? Events.nextAfter(root.selectedDate) : null
+
+            Layout.fillWidth: true
+            Layout.topMargin: Tokens.spacing.small
+            visible: Events.available
+            spacing: 0
+
+            StyledText {
+                Layout.fillWidth: true
+                Layout.leftMargin: Tokens.padding.small
+                Layout.bottomMargin: Tokens.spacing.extraSmall
+                text: root.dayTitle(root.selectedDate)
+                color: Colours.palette.m3primary
+                font: Tokens.font.label.medium
+                elide: Text.ElideRight
+            }
+
+            Repeater {
+                model: agenda.dayEvents.slice(0, 3)
+
+                EventRow {}
+            }
+
+            StyledText {
+                Layout.leftMargin: Tokens.padding.small
+                visible: agenda.dayEvents.length > 3
+                text: Tr.tr("+%1 more").arg(agenda.dayEvents.length - 3)
+                color: Colours.palette.m3onSurfaceVariant
+                font: Tokens.font.label.small
+            }
+
+            StyledText {
+                Layout.fillWidth: true
+                Layout.leftMargin: Tokens.padding.small
+                visible: agenda.dayEvents.length === 0
+                text: agenda.next ? root.nextText(agenda.next) : Tr.tr("No events")
+                color: Colours.palette.m3onSurfaceVariant
+                font: Tokens.font.body.small
+                elide: Text.ElideRight
+            }
+        }
+    }
+
+    component EventRow: Item {
+        id: eventRow
+
+        required property var modelData
+
+        Layout.fillWidth: true
+        implicitHeight: eventLayout.implicitHeight + Tokens.padding.extraSmall * 2
+
+        StateLayer {
+            radius: Tokens.rounding.small
+            disabled: !eventRow.modelData.url
+            onClicked: Qt.openUrlExternally(eventRow.modelData.url)
+        }
+
+        RowLayout {
+            id: eventLayout
+
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.leftMargin: Tokens.padding.small
+            anchors.rightMargin: Tokens.padding.small
+            spacing: Tokens.spacing.small
+
+            Rectangle {
+                Layout.fillHeight: true
+                implicitWidth: 3
+                radius: 2
+                color: Colours.palette.m3primary
+            }
+
+            StyledText {
+                text: eventRow.modelData.allDay ? Tr.tr("All day") : root.timeText(eventRow.modelData.start)
+                color: Colours.palette.m3onSurfaceVariant
+                font: Tokens.font.body.small
+            }
+
+            StyledText {
+                Layout.fillWidth: true
+                text: eventRow.modelData.title
+                font: Tokens.font.body.small
+                elide: Text.ElideRight
+            }
+
+            MaterialIcon {
+                visible: !!eventRow.modelData.url
+                text: "open_in_new"
+                color: Colours.palette.m3onSurfaceVariant
             }
         }
     }

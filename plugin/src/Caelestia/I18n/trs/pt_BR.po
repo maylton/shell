@@ -4151,3 +4151,37 @@ msgstr "Posicionamento"
 
 msgid "Where this monitor sits relative to the primary one"
 msgstr "Onde este monitor fica em relação ao principal"
+
+#: modules/dashboard/dash/Calendar.qml
+msgid "Tomorrow"
+msgstr "Amanhã"
+
+#: modules/dashboard/dash/Calendar.qml
+msgid "All day"
+msgstr "Dia todo"
+
+#: modules/dashboard/dash/Calendar.qml
+msgid "No events"
+msgstr "Nenhum evento"
+
+#. TRANSLATORS: %1 = date, time and title of the next event
+#: modules/dashboard/dash/Calendar.qml
+#, qt-format
+msgid "No events · next: %1"
+msgstr "Nada neste dia · próximo: %1"
+
+#. TRANSLATORS: %1 = number of events not listed
+#: modules/dashboard/dash/Calendar.qml
+#, qt-format
+msgid "+%1 more"
+msgstr "+%1 outros"
+
+#: services/Events.qml
+msgid "(untitled)"
+msgstr "(sem título)"
+
+#. TRANSLATORS: Qt date format for the day shown under the dashboard calendar
+#: modules/dashboard/dash/Calendar.qml
+msgctxt "date format"
+msgid "dddd, d MMMM"
+msgstr "dddd, d 'de' MMMM"

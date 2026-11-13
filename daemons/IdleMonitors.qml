@@ -6,6 +6,7 @@ import Quickshell.Wayland
 import Quickshell.Services.UPower
 import Caelestia.Config
 import Caelestia.Services
+import Caelestia.State
 import qs.services
 import qs.modules.lock
 
@@ -62,6 +63,10 @@ Scope {
 
             enabled: {
                 if (!root.enabled || !(modelData.enabled ?? true))
+                    return false;
+                // Keep awake: don't rely solely on the zwp inhibitor surface, which can
+                // get lost after monitor hotplug or lock/DPMS cycles (upstream #1835)
+                if (RuntimeState.inhibitIdle && (modelData.respectInhibitors ?? true))
                     return false;
                 if (modelData.inhibitWhenAudio && root.hasPlayer)
                     return false;

@@ -44,6 +44,12 @@ QtObject {
 
         // System
         {
+            label: Tr.tr("Power"),
+            icon: "power_settings_new",
+            description: Tr.tr("Screen lock, screen off, sleep"),
+            category: "system"
+        },
+        {
             label: Tr.tr("Updates"),
             icon: "update",
             description: Tr.tr("System updates"),

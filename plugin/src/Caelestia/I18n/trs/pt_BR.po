@@ -4185,3 +4185,100 @@ msgstr "(sem título)"
 msgctxt "date format"
 msgid "dddd, d MMMM"
 msgstr "dddd, d 'de' MMMM"
+
+# Power page
+#: modules/nexus/PageRegistry.qml
+msgid "Power"
+msgstr "Energia"
+
+#: modules/nexus/PageRegistry.qml
+msgid "Screen lock, screen off, sleep"
+msgstr "Bloqueio de tela, desligar tela, suspensão"
+
+#: modules/nexus/pages/PowerPage.qml
+msgctxt "sleep mode"
+msgid "Suspend"
+msgstr "Suspender"
+
+#: modules/nexus/pages/PowerPage.qml
+msgctxt "sleep mode"
+msgid "Suspend, then hibernate"
+msgstr "Suspender e depois hibernar"
+
+#: modules/nexus/pages/PowerPage.qml
+msgctxt "sleep mode"
+msgid "Hibernate"
+msgstr "Hibernar"
+
+#: modules/nexus/pages/PowerPage.qml
+msgctxt "idle timeout"
+msgid "Never"
+msgstr "Nunca"
+
+#: modules/nexus/pages/PowerPage.qml
+msgid "Idle actions are paused until you turn this off"
+msgstr "As ações de inatividade ficam pausadas até você desativar isto"
+
+#: modules/nexus/pages/PowerPage.qml
+msgid "Pause screen lock, screen off and sleep"
+msgstr "Pausa o bloqueio, o desligamento da tela e a suspensão"
+
+#: modules/nexus/pages/PowerPage.qml
+msgid "When inactive"
+msgstr "Quando inativo"
+
+#: modules/nexus/pages/PowerPage.qml
+msgid "Lock the screen after"
+msgstr "Bloquear a tela após"
+
+#: modules/nexus/pages/PowerPage.qml
+msgid "Time without input before the lock screen shows"
+msgstr "Tempo sem uso antes de a tela de bloqueio aparecer"
+
+#: modules/nexus/pages/PowerPage.qml
+msgid "Turn off the screen after"
+msgstr "Desligar a tela após"
+
+#: modules/nexus/pages/PowerPage.qml
+msgid "Time without input before displays go to sleep"
+msgstr "Tempo sem uso antes de os monitores desligarem"
+
+#: modules/nexus/pages/PowerPage.qml
+msgid "Put the system to sleep after"
+msgstr "Suspender o sistema após"
+
+#: modules/nexus/pages/PowerPage.qml
+msgid "Time without input before the computer sleeps"
+msgstr "Tempo sem uso antes de o computador suspender"
+
+#: modules/nexus/pages/PowerPage.qml
+msgid "Sleep mode"
+msgstr "Modo de suspensão"
+
+#: modules/nexus/pages/PowerPage.qml
+msgid "What happens when the system goes to sleep"
+msgstr "O que acontece quando o sistema suspende"
+
+#: modules/nexus/pages/PowerPage.qml
+msgid "Lock before sleeping"
+msgstr "Bloquear antes de suspender"
+
+#: modules/nexus/pages/PowerPage.qml
+msgid "Always lock the screen when the system suspends"
+msgstr "Sempre bloquear a tela quando o sistema suspender"
+
+#: modules/nexus/pages/PowerPage.qml
+msgid "Stay awake while media plays"
+msgstr "Manter ativo durante a reprodução de mídia"
+
+#: modules/nexus/pages/PowerPage.qml
+msgid "Don't lock, turn off the screen or sleep during playback"
+msgstr "Não bloquear, desligar a tela nem suspender durante a reprodução"
+
+#: modules/nexus/pages/PowerPage.qml
+msgid "Stay awake while charging"
+msgstr "Manter ativo enquanto carrega"
+
+#: modules/nexus/pages/PowerPage.qml
+msgid "Don't run idle actions when plugged in"
+msgstr "Não executar ações de inatividade na tomada"

@@ -82,6 +82,10 @@ MouseArea {
             return item.mapToItem(root.parent, 0, off).y + root.marginY;
         }
 
+        // Hide the collapsed panel entirely: once the menu is reparented to the window its children
+        // can stay effectively enabled, so an invisible panel would swallow clicks meant for the
+        // controls underneath it
+        visible: root.opacity > 0
         radius: Tokens.rounding.large
         level: 2
 
@@ -99,6 +103,7 @@ MouseArea {
 
         MouseArea {
             anchors.fill: parent
+            enabled: root.expanded
             hoverEnabled: true
             onWheel: e => e.accepted = true
         }
